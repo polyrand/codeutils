@@ -51,3 +51,22 @@ def correct_col_str(df, columns):
         df[col].replace(' &#.*', '', regex=True, inplace=True)
 
     return df
+
+def factorize(data, cols_bin=None, cols_muti):
+    df = data.copy()
+
+    if cols_bin:
+        for column in cols_bin:
+            df[column] = df[column].factorize()[0]
+    else:
+        print('No columns to encode binary')
+
+    if cols_muti:
+        for column in cols_muti:
+            df = pd.concat(df, pd.get_dummies(df[column]), axis=1)
+            df.drop(column, axis=1, inplace=True)
+    else:
+        print('No columns to one-hot enconde')
+
+    return df
+
