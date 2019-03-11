@@ -12,7 +12,7 @@ import <whatever-you-need>
 ```
 ## Meta
 
-Your Name – [@YourTwitter](https://twitter.com/) – YourEmail@example.com
+Ricardo Ander-Egg Aguilar – [@ricardoanderegg](https://twitter.com/ricardoanderegg)
 
 [https://github.com/rickaa/](https://github.com/rickaa/)
 
