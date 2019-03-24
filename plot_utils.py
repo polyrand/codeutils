@@ -1,8 +1,10 @@
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 
-form sklearn.model_selection import cross_validate
-from sklearn.metrics import roc_curve, cros
+from sklearn.model_selection import cross_validate
+from sklearn.metrics import roc_curve, cros, roc_auc_score
 from sklearn.metrics import confusion_matrix, classification_report
 
 from mlxtend.plotting import plot_confusion_matrix
@@ -48,7 +50,7 @@ def print_confmat(x_test, y_test, clf):
     print(roc_auc_score(y_test, y_pred))
 
 
-def crossval(scoring=None, clf, X, y, plot=False):
+def crossval(clf, X, y, scoring=None, plot=False):
     if not scoring:
         scoring = ['precision_macro', 'recall_macro', 'f1', 'average_precision']
 
@@ -61,5 +63,3 @@ def crossval(scoring=None, clf, X, y, plot=False):
         sns.lineplot(data=score_df.drop(['fit_time', 'score_time'], axis=1))
 
     return score_df
-
-    
