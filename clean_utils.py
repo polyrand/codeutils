@@ -70,3 +70,50 @@ def factorize(data, cols_bin=None, cols_muti):
 
     return df
 
+
+# dict 2 case_when
+# def case_when(row):
+#     if (row['IMDB_Rating'] >= 0) & (row['IMDB_Rating'] <= 6): return 'OK'  elif (row['IMDB_Rating'] > 6) & (row['IMDB_Rating'] <= 8):
+#         return 'Good'
+ 
+#     else:
+#         return 'Excellent'
+ 
+# # apply case_when function
+# mydata['IMDB_cat'] = mydata.apply(case_when, axis=1)
+
+# # https://stackoverflow.com/a/49228646
+# pd_df['difficulty'] = 'Unknown'
+# pd_df.loc[pd_df['Time'].between(0, 30, inclusive=False), 'difficulty'] = 'Easy'
+# pd_df.loc[pd_df['Time'].between(30, 60, inclusive=True), 'difficulty'] = 'Medium'
+
+# pd_df['difficulty'] = np.select(
+#     [
+#         pd_df['Time'].between(0, 30, inclusive=False), 
+#         pd_df['Time'].between(30, 60, inclusive=True)
+#     ], 
+#     [
+#         'Easy', 
+#         'Medium'
+#     ], 
+#     default='Unknown'
+# )
+
+
+# pd_df['difficulty'] = np.where(
+#      pd_df['Time'].between(0, 30, inclusive=False), 
+#     'Easy', 
+#      np.where(
+#         pd_df['Time'].between(0, 30, inclusive=False), 'Medium', 'Unknown'
+#      )
+# )
+
+# def func(row):
+#     if row['mobile'] == 'mobile':
+#         return 'mobile'
+#     elif row['tablet'] =='tablet':
+#         return 'tablet' 
+#     else:
+#         return 'other'
+
+# df['combo'] = df.apply(func, axis=1)
