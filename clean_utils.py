@@ -52,6 +52,7 @@ def correct_col_str(df, columns):
 
     return df
 
+
 def factorize(data, cols_bin=None, cols_muti):
     df = data.copy()
 
