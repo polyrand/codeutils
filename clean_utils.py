@@ -53,7 +53,7 @@ def correct_col_str(df, columns):
     return df
 
 
-def factorize(data, cols_bin=None, cols_muti):
+def factorize(data, cols_bin=None, cols_muti=None):
     df = data.copy()
 
     if cols_bin:
@@ -72,14 +72,28 @@ def factorize(data, cols_bin=None, cols_muti):
     return df
 
 
+def remove_counts(df: pd.DataFrame, column: str):
+    """Remove conditioned on value_counts()"""
+
+    assert isinstance(column, str)
+
+    df = df.copy()
+
+    df = df[
+        df[column]
+        != df[column].value_counts().loc[df[column].value_counts() < 2].index[0]
+    ]
+
+    return df
+
 # dict 2 case_when
 # def case_when(row):
 #     if (row['IMDB_Rating'] >= 0) & (row['IMDB_Rating'] <= 6): return 'OK'  elif (row['IMDB_Rating'] > 6) & (row['IMDB_Rating'] <= 8):
 #         return 'Good'
- 
+
 #     else:
 #         return 'Excellent'
- 
+
 # # apply case_when function
 # mydata['IMDB_cat'] = mydata.apply(case_when, axis=1)
 
@@ -90,20 +104,20 @@ def factorize(data, cols_bin=None, cols_muti):
 
 # pd_df['difficulty'] = np.select(
 #     [
-#         pd_df['Time'].between(0, 30, inclusive=False), 
+#         pd_df['Time'].between(0, 30, inclusive=False),
 #         pd_df['Time'].between(30, 60, inclusive=True)
-#     ], 
+#     ],
 #     [
-#         'Easy', 
+#         'Easy',
 #         'Medium'
-#     ], 
+#     ],
 #     default='Unknown'
 # )
 
 
 # pd_df['difficulty'] = np.where(
-#      pd_df['Time'].between(0, 30, inclusive=False), 
-#     'Easy', 
+#      pd_df['Time'].between(0, 30, inclusive=False),
+#     'Easy',
 #      np.where(
 #         pd_df['Time'].between(0, 30, inclusive=False), 'Medium', 'Unknown'
 #      )
@@ -113,7 +127,7 @@ def factorize(data, cols_bin=None, cols_muti):
 #     if row['mobile'] == 'mobile':
 #         return 'mobile'
 #     elif row['tablet'] =='tablet':
-#         return 'tablet' 
+#         return 'tablet'
 #     else:
 #         return 'other'
 
